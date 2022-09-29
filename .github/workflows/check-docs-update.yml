@@ -4,12 +4,13 @@ on:
   push:
     branches:
       - 'branch0.8.0'
+      - 'main'
     paths:
-      - "docs/**"
+      - 'docs/**'
 
 jobs:
   dispatch-update:
-    runs-on: "ubuntu-latest"
+    runs-on: 'ubuntu-latest'
     steps:
       - name: Trigger docs.towhee.io rebuild
         uses: actions/github-script@v5
@@ -17,10 +18,9 @@ jobs:
           github-token: ${{ secrets.TOKEN }}
           script: |
             github.rest.actions.createWorkflowDispatch({
-              owner: 'towhee-io',
+              owner: 'Tumao727',
               repo: 'towhee-docs',
               workflow_id: 'publish.yaml',
               ref: 'main',
             });
           debug: true
-        
